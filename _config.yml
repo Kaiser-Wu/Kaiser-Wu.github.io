@@ -1,8 +1,8 @@
-title: John Smith
+title: Kaiser Wu
 description: My Personal Blog
-author: John Smith
-logo: /hcz-jekyll-blog/static/img/avatar.png
-github: https://github.com/codeasashu
+author: Kaiser Wu
+logo: /static/img/avatar.png
+github:
 about: Freelance developer
 
 baseurl: ""
