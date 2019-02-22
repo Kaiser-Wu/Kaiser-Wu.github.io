@@ -10,8 +10,7 @@
         searchResultsEl = document.querySelector('#js-search__results'),
         currentInputValue = '',
         lastSearchResultHash,
-        posts = [],
-        sitemap = (baseurl || '') + '/sitemap.xml';
+        posts = [];
 
     // Changes XML to JSON
     // Modified version from here: http://davidwalsh.name/convert-xml-json
@@ -64,7 +63,7 @@
     }
 
     var xmlhttp=new XMLHttpRequest();
-    xmlhttp.open("GET",sitemap);
+    xmlhttp.open("GET","/sitemap.xml");
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState != 4) return;
         if (xmlhttp.status != 200 && xmlhttp.status != 304) { return; }
@@ -111,11 +110,18 @@
         }
         searchResultsEl.style.offsetWidth;
 
-        var matchingPosts = posts.filter(function (post) {
-            if ((post.title + '').toLowerCase().indexOf(currentInputValue) !== -1 || (post.description + '').toLowerCase().indexOf(currentInputValue) !== -1) {
-                return true;
-            }
-        });
+        var matchingPosts;
+        // check the `posts` object is single or many objects.
+        // if posts.title === undefined, so posts is many objects.
+        if(posts.title === undefined) {
+          matchingPosts = posts.filter(function (post) {
+              if ((post.title + '').toLowerCase().indexOf(currentInputValue) !== -1 || (post.description + '').toLowerCase().indexOf(currentInputValue) !== -1) {
+                  return true;
+              }
+          });
+        }else {
+          matchingPosts = [posts]; // assign single object to Array
+        }
         if (!matchingPosts.length) {
             searchResultsEl.classList.add('is-hidden');
         }
