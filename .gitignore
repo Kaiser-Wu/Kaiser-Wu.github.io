@@ -1,3 +1,11 @@
 /Gemfile
 /Gemfile.lock
 /_site
+/themes
+/source
+/scaffolds
+/package.json
+/package-lock.json
+/node_modules
+/db.json
+/_config.yml
